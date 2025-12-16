@@ -9,12 +9,12 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ view, setView }) => {
   return (
     <header className="border-b border-gray-300 bg-[#f5f5f5] w-full">
-      <div className="max-w-[1000px] mx-auto px-2 py-1 flex items-center gap-4 text-sm font-helvetica">
+      <div className="max-w-[1000px] mx-auto px-3 py-3 flex items-center gap-5 text-lg font-helvetica">
         
         {/* Logo / Home Link */}
         <div 
           onClick={() => setView('home')}
-          className="cursor-pointer font-bold text-xl tracking-tight hover:underline text-black"
+          className="cursor-pointer font-bold text-2xl tracking-tight hover:underline text-black"
         >
           randomlist
         </div>
@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ view, setView }) => {
           </button>
         </nav>
         
-        <div className="ml-auto text-xs text-gray-500 hidden sm:block">
+        <div className="ml-auto text-sm text-gray-500 hidden sm:block">
           [ global ]
         </div>
       </div>

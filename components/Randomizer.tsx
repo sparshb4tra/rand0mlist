@@ -14,18 +14,18 @@ const Randomizer: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[600px] mx-auto mt-10 p-4 bg-[#f0f0f0] border border-gray-300 font-helvetica">
-      <div className="text-center py-12">
-        <h2 className="font-bold text-xl mb-8 text-[#222]">
-          random website generator
+    <div className="w-full max-w-[720px] mx-auto mt-6 p-6 bg-[#f0f0f0] border border-gray-300 font-helvetica">
+      <div className="text-center py-8">
+        <h2 className="font-bold text-3xl mb-6 text-[#222]">
+          random website portal
         </h2>
         
-        <div className="border border-gray-400 bg-white p-6 inline-block shadow-sm">
-          <p className="mb-6 text-sm">Push button to open random url in new tab.</p>
+        <div className="border border-gray-400 bg-white p-8 inline-block shadow-sm">
+          <p className="mb-6 text-lg">Push button to open a random site in a new tab.</p>
           <button
             onClick={handleShuffle}
             disabled={loading}
-            className="bg-[#eeeeee] border border-gray-400 text-black px-6 py-2 text-base font-bold hover:bg-[#ddd] active:bg-[#ccc]"
+            className="bg-[#eeeeee] border border-gray-400 text-black px-8 py-3 text-xl font-bold hover:bg-[#ddd] active:bg-[#ccc]"
           >
             {loading ? 'loading...' : 'shuffle >'}
           </button>
