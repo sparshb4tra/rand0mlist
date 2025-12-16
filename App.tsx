@@ -6,17 +6,17 @@ import Directory from './components/Directory';
 import InfoPage from './components/InfoPage';
 import { ViewState } from './types';
 
-// Curated list of "brainrot" GIFs
+// Curated list of high-availability GIFs (Giphy) to avoid hotlink blocking
 const BRAINROT_GIFS = [
-  "https://media1.tenor.com/m/t1k5Yf8sCMAAAAAd/subway-surfers.gif", // Subway surfers
-  "https://media1.tenor.com/m/r8r6a1aXU8cAAAAd/minecraft-parkour.gif", // Minecraft parkour
-  "https://media1.tenor.com/m/x8v1oXZCm-gAAAAd/spinning-skull-skull.gif", // Skull
-  "https://media1.tenor.com/m/l1l8_h6A_iAAAAAd/metal-pipe-falling.gif", // Metal pipe
-  "https://media1.tenor.com/m/C38rCqS5qO8AAAAd/family-guy-boring.gif", // Family Guy
-  "https://media1.tenor.com/m/u5k6v7a5A4AAAAAd/maxwell-cat.gif", // Maxwell
-  "https://media1.tenor.com/m/9m26a0hA4lAAAAAd/skibidi-toilet.gif", // Skibidi
-  "https://media1.tenor.com/m/1IssyGqH4E4AAAAd/cat-vibing-cat.gif", // Vibing Cat
-  "https://media1.tenor.com/m/P5lD1J8O1rAAAAAd/lobotomy-kaisen.gif", // Lobotomy
+  "https://media.giphy.com/media/ka0pMxG6T6h9lEhlgp/giphy.gif", // Subway Surfers Gameplay
+  "https://media.giphy.com/media/xT9IgusfDcqpPFzjdS/giphy.gif", // Trippy Abstract
+  "https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif", // Minecraft
+  "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif", // Spinning Skull
+  "https://media.giphy.com/media/l0HlPtbGpcnqa0fja/giphy.gif", // Family Guy
+  "https://media.giphy.com/media/GeimqsH0TLDt4tScGw/giphy.gif", // Vibing Cat
+  "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif", // Success Kid / Celebration
+  "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif", // Cat typing
+  "https://media.giphy.com/media/26tOZ42Mg6pbTUPhw/giphy.gif", // Hypnotic
 ];
 
 const App: React.FC = () => {
@@ -24,8 +24,14 @@ const App: React.FC = () => {
   const [bgGif, setBgGif] = useState<string | null>(null);
 
   const handleFunClick = () => {
-    const randomGif = BRAINROT_GIFS[Math.floor(Math.random() * BRAINROT_GIFS.length)];
-    setBgGif(randomGif);
+    if (bgGif) {
+      // If active, turn off (revert to white)
+      setBgGif(null);
+    } else {
+      // If inactive, pick random GIF
+      const randomGif = BRAINROT_GIFS[Math.floor(Math.random() * BRAINROT_GIFS.length)];
+      setBgGif(randomGif);
+    }
   };
 
   const renderMainContent = () => {
