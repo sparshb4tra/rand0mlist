@@ -124,6 +124,21 @@ export const categories: Category[] = [
     ]
   },
   {
+    id: 'tools-text',
+    name: 'text & writing',
+    icon: 'Type',
+    sites: [
+      { title: 'Lorem Ipsum', url: 'https://www.lipsum.com/', description: 'placeholder text' },
+      { title: 'WordCounter', url: 'https://wordcounter.net/', description: 'word count' },
+      { title: 'Diffchecker', url: 'https://www.diffchecker.com/', description: 'compare text' },
+      { title: 'Hemingway', url: 'https://hemingwayapp.com/', description: 'editor' },
+      { title: 'Dictation', url: 'https://dictation.io/', description: 'speech to text' },
+      { title: 'ASCIIFlow', url: 'https://asciiflow.com/', description: 'ascii diagrams' },
+      { title: 'Grep.app', url: 'https://grep.app/', description: 'github code search' },
+      { title: 'JSON Crack', url: 'https://jsoncrack.com/', description: 'visualize json' },
+    ]
+  },
+  {
     id: 'tools-media',
     name: 'image / video / audio',
     icon: 'Image',
@@ -159,6 +174,7 @@ export const categories: Category[] = [
       { title: 'NewPipe', url: 'https://newpipe.net/', description: 'youtube client' },
       { title: 'AltStore', url: 'https://altstore.io/', description: 'ios sideloading' },
       { title: 'ReactOS', url: 'https://reactos.org/', description: 'windows clone' },
+      { title: 'Termux', url: 'https://termux.dev/', description: 'android terminal' },
     ]
   },
   {
