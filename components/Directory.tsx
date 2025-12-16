@@ -10,7 +10,7 @@ const IconRenderer = ({ name, className }: { name: string; className?: string })
 
 const Directory: React.FC = () => {
   return (
-    <div className="w-full bg-white min-h-screen">
+    <div className="w-full min-h-screen">
       {/* Header Bar */}
       <div className="bg-[#eeeeee] border-b border-gray-300 py-1 px-2 text-center mb-4">
         <h2 className="font-bold text-sm">internet directory</h2>

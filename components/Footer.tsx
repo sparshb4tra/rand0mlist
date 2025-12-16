@@ -3,9 +3,10 @@ import { ViewState } from '../types';
 
 interface FooterProps {
   setView: (view: ViewState) => void;
+  onFunClick: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ setView }) => {
+const Footer: React.FC<FooterProps> = ({ setView, onFunClick }) => {
   return (
     <footer className="mt-8 border-t border-gray-300 py-6 px-2 bg-white text-center">
       <div className="max-w-[1000px] mx-auto text-[11px] font-helvetica text-gray-600 space-y-3">
@@ -15,6 +16,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
           <button onClick={() => setView('privacy')} className="text-blue-800 hover:underline hover:bg-gray-100 px-1">privacy</button>
           <button onClick={() => setView('feedback')} className="text-blue-800 hover:underline hover:bg-gray-100 px-1">feedback</button>
           <button onClick={() => setView('terms')} className="text-blue-800 hover:underline hover:bg-gray-100 px-1">terms</button>
+          <button onClick={onFunClick} className="text-purple-600 font-bold hover:underline hover:bg-purple-100 px-1">fun</button>
         </div>
         <div>
           Created by <a href="https://sbatra.xyz" target="_blank" rel="noreferrer" className="text-blue-800 hover:underline">Sparsh</a>
