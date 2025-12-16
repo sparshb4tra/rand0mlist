@@ -17,7 +17,7 @@ const InfoPage: React.FC<InfoPageProps> = ({ type }) => {
               A: Randomlist is a minimalist directory of the internet's most interesting, obscure, and "deep" websites. It is designed to help you break out of the algorithmic bubble.</p>
               
               <p><strong>Q: How do I use the Randomizer?</strong><br/>
-              A: Navigate to the <span className="text-blue-800">randomizer</span> tab and click the "shuffle >" button. A random website from our curated database will open in a new tab.</p>
+              A: Navigate to the <span className="text-blue-800">randomizer</span> tab and click the "shuffle &gt;" button. A random website from our curated database will open in a new tab.</p>
               
               <p><strong>Q: How do I submit a site?</strong><br/>
               A: Use the feedback form. We only accept sites that are non-commercial, artistic, weird, or genuinely useful. No marketing landing pages.</p>
@@ -59,7 +59,7 @@ const InfoPage: React.FC<InfoPageProps> = ({ type }) => {
             <p>Found a broken link? Have a suggestion for the directory? Hate the design?</p>
             
             <div className="bg-[#f7f7f7] p-6 border border-gray-300">
-              <p className="mb-2"><strong>Reply to:</strong></p>
+              <p className="mb-2"><strong>Contact:</strong></p>
               <ul className="list-disc pl-5 space-y-1 text-blue-800">
                 <li><a href="mailto:hello@sbatra.xyz" className="hover:underline">hello@sbatra.xyz</a></li>
                 <li><a href="https://twitter.com/sbatra_xyz" target="_blank" rel="noreferrer" className="hover:underline">@sbatra_xyz (Twitter/X)</a></li>
