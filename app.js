@@ -135,9 +135,6 @@ async function toggleFun() {
     hasBgGif = false;
   } else {
     // Turn on fun mode - fetch GIF from Tenor
-    btn.textContent = 'loading...';
-    btn.disabled = true;
-    
     const gif = await getRandomGif();
     
     if (gif) {
@@ -153,13 +150,8 @@ async function toggleFun() {
         app.classList.add('has-bg');
         btn.textContent = 'normal';
         hasBgGif = true;
-      } else {
-        btn.textContent = 'fun';
-        alert('Could not fetch GIF from Tenor. Please try again.');
       }
     }
-    
-    btn.disabled = false;
   }
 }
 
