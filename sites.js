@@ -256,6 +256,22 @@ const categories = [
       { title: 'Foster + Partners', url: 'https://www.fosterandpartners.com/', description: 'architecture' },
       { title: 'OMA', url: 'https://oma.eu/', description: 'rem koolhaas' },
       { title: 'Heatherwick', url: 'https://www.heatherwick.com/', description: 'design studio' },
+      // Lowkey & Underrated Studios
+      { title: 'Studio MEMM', url: 'https://studiomemm.com/', description: 'nature-integrated asymmetry' },
+      { title: 'Patchwork Architecture', url: 'https://patchworkarchitecture.co.nz/', description: 'bold textured nz vibes' },
+      { title: 'Makhno Studio', url: 'https://makhnostudio.com/', description: 'ukrainian cultural fusion' },
+      { title: 'Raad Studio', url: 'https://raad.studio/', description: 'experimental layouts' },
+      { title: 'Robert Gurney', url: 'https://www.robertgurneyarchitect.com/', description: 'modern residential' },
+      { title: 'Ark Shelter', url: 'https://www.arkshelter.com/', description: 'eco-modular aesthetic' },
+      { title: 'Emmanuelle Moureaux', url: 'https://www.emmanuellemoureaux.com/', description: 'colorful installations' },
+      { title: 'MVRDV', url: 'https://www.mvrdv.nl/', description: 'dutch innovation' },
+      { title: 'Kengo Kuma', url: 'https://kkaa.co.jp/', description: 'japanese minimalism' },
+      { title: 'Tadao Ando', url: 'https://www.tadao-ando.com/', description: 'concrete poetry' },
+      { title: 'Olson Kundig', url: 'https://olsonkundig.com/', description: 'craft-driven design' },
+      { title: 'Studio Gang', url: 'https://studiogang.com/', description: 'chicago innovation' },
+      { title: 'Morphosis', url: 'https://www.morphosis.com/', description: 'thom mayne studio' },
+      { title: 'Diller Scofidio', url: 'https://dsrny.com/', description: 'interdisciplinary design' },
+      { title: 'Atelier Bow-Wow', url: 'https://www.bow-wow.jp/', description: 'tokyo micro architecture' },
     ]
   },
   {
@@ -351,6 +367,23 @@ const categories = [
       { title: 'Dazed', url: 'https://www.dazeddigital.com/', description: 'fashion & culture' },
       { title: 'Another Magazine', url: 'https://www.anothermag.com/', description: 'fashion culture' },
       { title: 'Document Journal', url: 'https://www.documentjournal.com/', description: 'fashion art' },
+      // Moodboards & Style Inspiration
+      { title: 'Milanote Fashion', url: 'https://milanote.com/templates/moodboards/fashion-moodboard', description: 'fashion moodboards' },
+      { title: 'Are.na', url: 'https://www.are.na/', description: 'curated aesthetic channels' },
+      { title: 'Tagwalk', url: 'https://www.tagwalk.com/', description: 'runway trend search' },
+      { title: 'ShopLook', url: 'https://shoplook.io/', description: 'outfit collages' },
+      { title: 'MattoBoard', url: 'https://mattoboard.com/', description: 'drag-drop moodboarding' },
+      // Indie & Lowkey Style
+      { title: 'Garmentory', url: 'https://www.garmentory.com/', description: 'indie boutiques' },
+      { title: 'Need Supply', url: 'https://needsupply.com/', description: 'curated fashion' },
+      { title: 'Totokaelo', url: 'https://totokaelo.com/', description: 'avant-garde fashion' },
+      { title: 'The Frankie Shop', url: 'https://thefrankieshop.com/', description: 'minimal essentials' },
+      { title: 'COS', url: 'https://www.cos.com/', description: 'modern essentials' },
+      { title: 'Arket', url: 'https://www.arket.com/', description: 'scandinavian basics' },
+      { title: 'Everlane', url: 'https://www.everlane.com/', description: 'transparent pricing' },
+      { title: 'Reformation', url: 'https://www.thereformation.com/', description: 'sustainable fashion' },
+      { title: 'Aritzia', url: 'https://www.aritzia.com/', description: 'everyday luxury' },
+      { title: 'Matches Fashion', url: 'https://www.matchesfashion.com/', description: 'luxury curation' },
     ]
   },
   {
@@ -373,6 +406,42 @@ const categories = [
       { title: 'Medusa', url: 'https://medusajs.com/', description: 'open source commerce' },
       { title: 'Saleor', url: 'https://saleor.io/', description: 'graphql commerce' },
       { title: 'Vendure', url: 'https://www.vendure.io/', description: 'headless commerce' },
+    ]
+  },
+  // ========== FOOD & RESTAURANTS ==========
+  {
+    id: 'food',
+    name: 'food & restaurants',
+    icon: 'Utensils',
+    sites: [
+      // Recipe & Cooking
+      { title: 'Serious Eats', url: 'https://www.seriouseats.com/', description: 'culinary science' },
+      { title: 'Bon Appétit', url: 'https://www.bonappetit.com/', description: 'food magazine' },
+      { title: 'NYT Cooking', url: 'https://cooking.nytimes.com/', description: 'tested recipes' },
+      { title: 'Food52', url: 'https://food52.com/', description: 'home cooking' },
+      { title: 'Epicurious', url: 'https://www.epicurious.com/', description: 'recipes & tips' },
+      { title: 'Tasty', url: 'https://tasty.co/', description: 'quick recipes' },
+      { title: 'Half Baked Harvest', url: 'https://www.halfbakedharvest.com/', description: 'comfort food' },
+      { title: 'Minimalist Baker', url: 'https://minimalistbaker.com/', description: 'simple recipes' },
+      { title: 'Budget Bytes', url: 'https://www.budgetbytes.com/', description: 'budget cooking' },
+      { title: 'Smitten Kitchen', url: 'https://smittenkitchen.com/', description: 'home cooking blog' },
+      // Restaurant Discovery
+      { title: 'Eater', url: 'https://www.eater.com/', description: 'dining guides' },
+      { title: 'Infatuation', url: 'https://www.theinfatuation.com/', description: 'restaurant reviews' },
+      { title: 'Resy', url: 'https://resy.com/', description: 'reservations' },
+      { title: 'OpenTable', url: 'https://www.opentable.com/', description: 'restaurant booking' },
+      { title: 'Yelp', url: 'https://www.yelp.com/', description: 'local reviews' },
+      // Hidden Gem Restaurants (Aesthetic Sites)
+      { title: 'Meals by Genet', url: 'https://mealsbygenet.com/', description: 'ethiopian bistro' },
+      { title: 'Cafe Munir', url: 'https://cafemunir.com/', description: 'lebanese hidden gem' },
+      { title: 'Redheaded Stranger', url: 'https://redheadedstrangernashville.com/', description: 'nashville bbq' },
+      { title: 'Butcher & Bee', url: 'https://butcherandbee.com/', description: 'engaging food focus' },
+      { title: 'Mon Lapin', url: 'https://monlapin.ca/', description: 'rustic seasonal montreal' },
+      { title: 'Cafe Flora', url: 'https://cafeflora.com/', description: 'seattle vegan gem' },
+      { title: 'Eleven Madison Park', url: 'https://www.elevenmadisonpark.com/', description: 'fine dining nyc' },
+      { title: 'Noma', url: 'https://noma.dk/', description: 'new nordic cuisine' },
+      { title: 'Alinea', url: 'https://www.alinearestaurant.com/', description: 'chicago molecular' },
+      { title: 'The French Laundry', url: 'https://www.thomaskeller.com/tfl', description: 'napa fine dining' },
     ]
   },
   // ========== ORIGINAL CATEGORIES ==========
@@ -526,6 +595,22 @@ const categories = [
       { title: 'Cleanup.pictures', url: 'https://cleanup.pictures/', description: 'remove objects' },
       { title: 'Favicon.io', url: 'https://favicon.io/', description: 'favicon generator' },
       { title: 'Meta Tags', url: 'https://metatags.io/', description: 'meta tag generator' },
+      // Underrated Free Tools
+      { title: 'Penpot', url: 'https://penpot.app/', description: 'open-source figma' },
+      { title: 'Google Web Designer', url: 'https://webdesigner.google.com/', description: 'free html5 builder' },
+      { title: 'Plasfy', url: 'https://plasfy.com/', description: 'vector graphics' },
+      { title: 'Spline', url: 'https://spline.design/', description: '3d web immersive' },
+      { title: 'AlternativeTo', url: 'https://alternativeto.net/', description: 'crowdsourced alternatives' },
+      { title: 'Raycast', url: 'https://www.raycast.com/', description: 'mac productivity launcher' },
+      { title: 'Warp', url: 'https://www.warp.dev/', description: 'modern terminal' },
+      { title: 'Fig', url: 'https://fig.io/', description: 'terminal autocomplete' },
+      { title: 'Responsively', url: 'https://responsively.app/', description: 'responsive testing' },
+      { title: 'Sizzy', url: 'https://sizzy.co/', description: 'browser for devs' },
+      { title: 'Polypane', url: 'https://polypane.app/', description: 'dev browser' },
+      { title: 'Hoppscotch', url: 'https://hoppscotch.io/', description: 'api testing' },
+      { title: 'Insomnia', url: 'https://insomnia.rest/', description: 'api client' },
+      { title: 'Bruno', url: 'https://www.usebruno.com/', description: 'offline api client' },
+      { title: 'TablePlus', url: 'https://tableplus.com/', description: 'database gui' },
     ]
   },
   {
@@ -757,6 +842,22 @@ const categories = [
       { title: 'Things 3', url: 'https://culturedcode.com/things/', description: 'task manager' },
       { title: 'Raindrop', url: 'https://raindrop.io/', description: 'bookmarks' },
       { title: 'Pocket', url: 'https://getpocket.com/', description: 'save articles' },
+      // Aesthetic Minimal Hidden Gems
+      { title: 'Superlist', url: 'https://www.superlist.com/', description: 'sleek wunderlist successor' },
+      { title: 'Reflect', url: 'https://reflect.app/', description: 'minimal journaling + ai' },
+      { title: 'Flocus', url: 'https://flocus.com/', description: 'aesthetic dashboard' },
+      { title: 'Headway', url: 'https://www.headway.com/', description: 'book summaries' },
+      { title: 'Capacities', url: 'https://capacities.io/', description: 'object-based notes' },
+      { title: 'Anytype', url: 'https://anytype.io/', description: 'local-first workspace' },
+      { title: 'Tana', url: 'https://tana.inc/', description: 'supertag workspace' },
+      { title: 'Mem', url: 'https://mem.ai/', description: 'ai-powered notes' },
+      { title: 'Routine', url: 'https://www.routine.co/', description: 'calendar + tasks' },
+      { title: 'Akiflow', url: 'https://akiflow.com/', description: 'time blocking' },
+      { title: 'Reclaim', url: 'https://reclaim.ai/', description: 'ai scheduling' },
+      { title: 'Motion', url: 'https://www.usemotion.com/', description: 'ai calendar' },
+      { title: 'Sunsama', url: 'https://sunsama.com/', description: 'daily planner' },
+      { title: 'Centered', url: 'https://www.centered.app/', description: 'flow state app' },
+      { title: 'Pomofocus', url: 'https://pomofocus.io/', description: 'clean pomodoro' },
     ]
   },
   {
