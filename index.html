@@ -1,78 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Randomlist</title>
-    <meta name="description" content="A minimalist, Craigslist-inspired portal to the random corners of the internet. Discover useful, weird, and obscure websites." />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Randomlist</title>
+  <meta name="description" content="A minimalist, Craigslist-inspired portal to the random corners of the internet. Discover useful, weird, and obscure websites." />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Randomlist" />
-    <meta property="og:description" content="A minimalist, Craigslist-inspired portal to the random corners of the internet. Discover useful, weird, and obscure websites." />
-    <meta property="og:image" content="/social-preview.png" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Randomlist" />
+  <meta property="og:description" content="A minimalist, Craigslist-inspired portal to the random corners of the internet. Discover useful, weird, and obscure websites." />
+  <meta property="og:image" content="/social-preview.png" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="Randomlist" />
-    <meta property="twitter:description" content="A minimalist, Craigslist-inspired portal to the random corners of the internet. Discover useful, weird, and obscure websites." />
-    <meta property="twitter:image" content="/social-preview.png" />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Randomlist" />
+  <meta property="twitter:description" content="A minimalist, Craigslist-inspired portal to the random corners of the internet. Discover useful, weird, and obscure websites." />
+  <meta property="twitter:image" content="/social-preview.png" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        background-color: #ffffff;
-        color: #222222;
-      }
-      
-      /* Craigslist-style Link Behaviors */
-      a {
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      
-      .cl-link {
-        color: #0000ee;
-      }
-      .cl-link:visited {
-        color: #551a8b;
-      }
-      
-      /* Utilities */
-      .font-helvetica {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      }
-    </style>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'cl-bg': '#f0f0f0',
-              'cl-blue': '#0000ee',
-              'cl-purple': '#551a8b',
-              'cl-gray': '#eeeeee',
-            }
-          }
-        }
-      }
-    </script>
-    <script type="importmap">
-    {
-      "imports": {
-        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-        "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
-        "react": "https://esm.sh/react@^19.2.3",
-        "react/": "https://esm.sh/react@^19.2.3/"
-      }
-    }
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="app-container">
+    <!-- Header -->
+    <header class="header" id="header">
+      <div class="header-inner">
+        <div class="logo" onclick="navigate('home')">randomlist</div>
+        <span class="breadcrumb-sep">&gt;</span>
+        <nav class="nav">
+          <button onclick="navigate('home')" id="nav-home" class="nav-btn active">randomizer</button>
+          <span class="nav-sep">|</span>
+          <button onclick="navigate('directory')" id="nav-directory" class="nav-btn">directory</button>
+        </nav>
+        <div class="header-tag">[ global ]</div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+      <!-- Home/Randomizer View -->
+      <div id="view-home" class="view">
+        <div class="randomizer-container">
+          <div class="randomizer-box">
+            <h2 class="randomizer-title">random website portal</h2>
+            <div class="randomizer-inner">
+              <p class="randomizer-text">Push button to open a random site in a new tab.</p>
+              <button onclick="shuffleSite()" id="shuffle-btn" class="shuffle-btn">shuffle &gt;</button>
+            </div>
+            <div class="site-count" id="site-count"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Directory View -->
+      <div id="view-directory" class="view hidden">
+        <div class="directory-header">
+          <h2>internet directory</h2>
+        </div>
+        <div class="directory-container" id="directory-grid"></div>
+      </div>
+
+      <!-- Info Pages -->
+      <div id="view-help" class="view hidden">
+        <div class="info-container">
+          <div class="info-box">
+            <h2 class="info-title">help / faq</h2>
+            <div class="info-content">
+              <p><strong>Q: What is this site?</strong><br/>
+              A: Randomlist is a minimalist directory of the internet's most interesting, obscure, and "deep" websites. It is designed to help you break out of the algorithmic bubble.</p>
+              <p><strong>Q: How do I use the Randomizer?</strong><br/>
+              A: Navigate to the <span class="link-text">randomizer</span> tab and click the "shuffle &gt;" button. A random website from our curated database will open in a new tab.</p>
+              <p><strong>Q: How do I submit a site?</strong><br/>
+              A: Use the feedback form. We only accept sites that are non-commercial, artistic, weird, or genuinely useful. No marketing landing pages.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="view-safety" class="view hidden">
+        <div class="info-container">
+          <div class="info-box">
+            <h2 class="info-title">safety tips</h2>
+            <ul class="info-list">
+              <li><strong>External Links:</strong> This website acts as a portal. We link to third-party websites that we do not own or control. While we curate for quality, content on the internet can change.</li>
+              <li><strong>Downloads:</strong> Be cautious when downloading files from any website. We do not host files directly.</li>
+              <li><strong>Personal Information:</strong> Never give out your password, credit card number, or social security number to a site you do not trust.</li>
+              <li><strong>Scams:</strong> Be aware of common internet scams. If a deal looks too good to be true on any site you visit, it probably is.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="view-privacy" class="view hidden">
+        <div class="info-container">
+          <div class="info-box">
+            <h2 class="info-title">privacy policy</h2>
+            <div class="info-content">
+              <p><strong>1. Data Collection</strong><br/>
+              We do not collect personal data. We do not require you to register. We do not track your IP address for marketing purposes.</p>
+              <p><strong>2. Cookies</strong><br/>
+              This site is static. We do not use persistent tracking cookies.</p>
+              <p><strong>3. Third Parties</strong><br/>
+              When you click a link and leave Randomlist, our privacy policy no longer applies. You are subject to the policies of the destination website.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="view-feedback" class="view hidden">
+        <div class="info-container">
+          <div class="info-box">
+            <h2 class="info-title">feedback</h2>
+            <p>This is a small public comment wall. Anyone using this browser can leave a note about Randomlist. Older comments are periodically cleared.</p>
+            <div class="feedback-form-container">
+              <form id="feedback-form" class="feedback-form">
+                <div class="form-group">
+                  <label>name (optional)</label>
+                  <input type="text" id="feedback-name" placeholder="anonymous" />
+                </div>
+                <div class="form-group">
+                  <label>comment</label>
+                  <textarea id="feedback-message" placeholder="share feedback, ideas, or site suggestions..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">publish comment</button>
+                <p class="form-note">Comments live only in this browser and are automatically cleared after a while.</p>
+              </form>
+              <div class="comments-section">
+                <h3>public comments</h3>
+                <div id="comments-list"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="view-terms" class="view hidden">
+        <div class="info-container">
+          <div class="info-box">
+            <h2 class="info-title">terms of use</h2>
+            <div class="terms-box">
+              <p>AGREEMENT BETWEEN USER AND RANDOMLIST</p>
+              <p>The Randomlist Web Site is comprised of various Web pages operated by Randomlist.</p>
+              <p>The Randomlist Web Site is offered to you conditioned on your acceptance without modification of the terms, conditions, and notices contained herein. Your use of the Randomlist Web Site constitutes your agreement to all such terms, conditions, and notices.</p>
+              <p>NO UNLAWFUL OR PROHIBITED USE</p>
+              <p>As a condition of your use of the Randomlist Web Site, you warrant to Randomlist that you will not use the Randomlist Web Site for any purpose that is unlawful or prohibited by these terms, conditions, and notices.</p>
+              <p>LIABILITY DISCLAIMER</p>
+              <p>THE INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES INCLUDED IN OR AVAILABLE THROUGH THE RANDOMLIST WEB SITE MAY INCLUDE INACCURACIES OR TYPOGRAPHICAL ERRORS. CHANGES ARE PERIODICALLY ADDED TO THE INFORMATION HEREIN.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <button onclick="navigate('help')">help</button>
+          <button onclick="navigate('safety')">safety</button>
+          <button onclick="navigate('privacy')">privacy</button>
+          <button onclick="navigate('feedback')">feedback</button>
+          <button onclick="navigate('terms')">terms</button>
+          <button onclick="toggleFun()" id="fun-btn" class="fun-btn">fun</button>
+        </div>
+        <div class="footer-credit">
+          Created by <a href="https://sbatra.xyz" target="_blank" rel="noreferrer">Sparsh</a>
+        </div>
+        <div class="footer-copy">© 2025 randomlist</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="sites.js"></script>
+  <script src="app.js"></script>
+</body>
 </html>
+
