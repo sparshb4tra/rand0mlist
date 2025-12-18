@@ -2,55 +2,19 @@
 let currentView = 'home';
 let hasBgGif = false;
 
-// ===== TENOR API CONFIG =====
-const TENOR_API_KEY = 'AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ';
-const TENOR_CLIENT_KEY = 'randomlist';
-
-const FUN_SEARCH_TERMS = [
-  // Classic brainrot
-  'brainrot', 'sigma', 'skibidi', 'rizz', 'gyatt', 'ohio',
-  'fanum tax', 'mewing', 'chad', 'gigachad',
-  // Gaming
-  'subway surfers', 'minecraft parkour', 'geometry dash', 'counter strike', 'csgo', 'brawlhalla', 'among us',
-  // Shows
-  'family guy funny', 'peter griffin', 'spongebob meme',
-  // Anime
-  'anime fight scene', 'dragon ball z', 'goku', 'vegeta',
-  'naruto run', 'one punch man', 'jojo bizarre', 'attack on titan',
-  'demon slayer', 'my hero academia', 'anime explosion',
-  // Misc viral
-  'cat meme', 'doge', 'dancing meme', 'wholesome meme', 'satisfying',
-  'funny animal', 'fail compilation', 'epic moment'
-];
-
-// Fetch random GIF from Tenor API
+// ===== GIF FETCHER (via serverless function) =====
+// API key is kept secret on server side via Vercel serverless function
 async function getRandomGif() {
   try {
-    const term = FUN_SEARCH_TERMS[Math.floor(Math.random() * FUN_SEARCH_TERMS.length)];
-    const url = `https://tenor.googleapis.com/v2/search?q=${encodeURIComponent(term)}&key=${TENOR_API_KEY}&client_key=${TENOR_CLIENT_KEY}&limit=20&media_filter=gif`;
-    
-    const response = await fetch(url);
+    const response = await fetch('/api/gif');
     if (!response.ok) {
-      console.error('Tenor API error:', response.status);
+      console.error('GIF API error:', response.status);
       return null;
     }
     
     const data = await response.json();
-    const results = data.results || [];
-    
-    if (results.length === 0) {
-      console.log('No results for:', term);
-      return null;
-    }
-    
-    // Pick random result
-    const chosen = results[Math.floor(Math.random() * results.length)];
-    const media = chosen.media_formats || {};
-    
-    // Try to get the best quality GIF URL
-    const gifUrl = media.gif?.url || media.mediumgif?.url || media.tinygif?.url;
-    console.log('Got GIF for:', term, gifUrl);
-    return gifUrl;
+    console.log('Got GIF for:', data.term, data.url);
+    return data.url;
   } catch (error) {
     console.error('Error fetching GIF:', error);
     return null;
