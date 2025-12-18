@@ -1,5 +1,6 @@
 // Massive Internet Directory Database
 // Includes design inspiration sites (httpster-style) + utility sites
+// Last updated: Dec 18, 2025 - Added 100+ portfolio sites & fixed Amazon links
 
 const categories = [
   // ========== DESIGN & CREATIVE ==========
