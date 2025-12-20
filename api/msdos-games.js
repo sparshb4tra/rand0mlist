@@ -45,29 +45,34 @@ export default async function handler(req, res) {
 
   try {
     // Archive.org Search API - fetch items from MS-DOS games collection
-    // Using metadata API endpoint which is more reliable
-    const url = 'https://archive.org/advancedsearch.php?q=collection:softwarelibrary_msdos_games&fl=identifier,title&sort[]=downloads%20desc&rows=100&output=json';
+    // Requesting 1000 games (there are 8835 total) sorted by downloads
+    // Using output=json (not jsonp) to get plain JSON response
+    const url = 'https://archive.org/advancedsearch.php?q=collection:softwarelibrary_msdos_games&fl=identifier&sort[]=downloads%20desc&rows=1000&output=json';
     
     const response = await fetch(url);
     
     if (!response.ok) {
-      throw new Error('Archive.org API error');
+      throw new Error(`Archive.org API error: ${response.status}`);
     }
     
     const data = await response.json();
+    
+    // Response structure: { response: { numFound: 8835, docs: [{ identifier: "..." }, ...] } }
     const games = data.response?.docs || [];
     
     if (games.length > 0) {
-      const gameIdentifiers = games.map(game => game.identifier);
-      return res.status(200).json({ games: gameIdentifiers });
+      const gameIdentifiers = games.map(game => game.identifier).filter(id => id); // Filter out any null/undefined
+      console.log(`Fetched ${gameIdentifiers.length} MS-DOS games from Archive.org`);
+      return res.status(200).json({ games: gameIdentifiers, total: data.response?.numFound || gameIdentifiers.length });
     }
     
     // Fallback to hardcoded list
-    return res.status(200).json({ games: FALLBACK_GAMES });
+    console.log('No games found, using fallback list');
+    return res.status(200).json({ games: FALLBACK_GAMES, total: FALLBACK_GAMES.length });
   } catch (error) {
     console.error('Error fetching MS-DOS games:', error);
     // Return fallback list on error
-    return res.status(200).json({ games: FALLBACK_GAMES });
+    return res.status(200).json({ games: FALLBACK_GAMES, total: FALLBACK_GAMES.length });
   }
 }
 
