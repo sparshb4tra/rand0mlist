@@ -122,6 +122,49 @@ function shuffleSite() {
   }, 300);
 }
 
+// ===== MS-DOS GAMES =====
+function openRandomMSDOSGame() {
+  // Popular MS-DOS games from Archive.org softwarelibrary_msdos_games collection
+  // Using game identifiers that work with the collection's structure
+  const msdosGames = [
+    'msdos_Doom_1993',
+    'msdos_Wolfenstein_3D_1992',
+    'msdos_Prince_of_Persia_1990',
+    'msdos_SimCity_1989',
+    'msdos_Oregon_Trail_The_1990',
+    'msdos_Lemmings_1991',
+    'msdos_Commander_Keen_4_Secret_of_the_Oracle_1991',
+    'msdos_Duke_Nukem_1991',
+    'msdos_Quake_1996',
+    'msdos_Descent_1995',
+    'msdos_Myst_1993',
+    'msdos_Civilization_1991',
+    'msdos_UFO_Enemy_Unknown_1994',
+    'msdos_Master_of_Orion_1993',
+    'msdos_Warcraft_Orcs_and_Humans_1994',
+    'msdos_Diablo_1996',
+    'msdos_Fallout_1997',
+    'msdos_Baldurs_Gate_1998',
+    'msdos_Jazz_Jackrabbit_1994',
+    'msdos_One_Must_Fall_2097_1994',
+    'msdos_Scorched_Earth_1991',
+    'msdos_Tyrian_1995',
+    'msdos_Raptor_Call_of_the_Shadows_1994',
+    'msdos_Alley_Cat_1984',
+    'msdos_Digger_1983',
+    'msdos_Tetris_1988',
+    'msdos_Pac_Man_1982',
+    'msdos_Space_Invaders_1978',
+    'msdos_Asteroids_1979',
+    'msdos_Centipede_1981'
+  ];
+  
+  const randomGame = msdosGames[Math.floor(Math.random() * msdosGames.length)];
+  // Archive.org game detail page URL pattern
+  const gameUrl = `https://archive.org/details/${randomGame}`;
+  window.open(gameUrl, '_blank');
+}
+
 // ===== FUN MODE =====
 async function toggleFun() {
   const app = document.getElementById('app');
