@@ -1,37 +1,108 @@
 // Vercel Serverless Function to fetch MS-DOS games from Archive.org
 // Fetches games from the softwarelibrary_msdos_games collection
 
-const FALLBACK_GAMES = [
+// Complete list of MS-DOS games from Archive.org collection
+const MSDOS_GAMES = [
+  'msdos_Super_Mario_Bros_PC_1995',
+  'msdos_Prince_of_Persia_1990',
+  'msdos_Sonic_the_Hedgehog_1991',
+  'msdos_Oregon_Trail_The_1990',
   'msdos_Doom_1993',
   'msdos_Wolfenstein_3D_1992',
-  'msdos_Prince_of_Persia_1990',
   'msdos_SimCity_1989',
-  'msdos_Oregon_Trail_The_1990',
-  'msdos_Lemmings_1991',
-  'msdos_Commander_Keen_4_Secret_of_the_Oracle_1991',
-  'msdos_Duke_Nukem_1991',
+  'msdos_Pac-Man_1983',
+  'msdos_Mega_Man_1990',
+  'msdos_Street_Fighter_II_1992',
+  'msdos_Tetris_1986',
+  'msdos_Mortal_Kombat_1993',
+  'msdos_Aladdin_1994',
+  'msdos_Duke_Nukem_3D_1996',
+  'msdos_Warcraft_Orcs_Humans_1994',
+  'msdos_Commander_Keen_1_Marooned_on_Mars_1990',
+  'msdos_The_Lion_King_1994',
   'msdos_Quake_1996',
-  'msdos_Descent_1995',
-  'msdos_Myst_1993',
-  'msdos_Civilization_1991',
-  'msdos_UFO_Enemy_Unknown_1994',
-  'msdos_Master_of_Orion_1993',
-  'msdos_Warcraft_Orcs_and_Humans_1994',
-  'msdos_Diablo_1996',
-  'msdos_Fallout_1997',
-  'msdos_Baldurs_Gate_1998',
+  'msdos_Donkey_Kong_1983',
+  'msdos_Leisure_Suit_Larry_in_the_Land_of_the_Lounge_Lizards_1987',
+  'msdos_Lemmings_1991',
+  'msdos_Sid_Meiers_Civilization_1991',
   'msdos_Jazz_Jackrabbit_1994',
-  'msdos_One_Must_Fall_2097_1994',
-  'msdos_Scorched_Earth_1991',
-  'msdos_Tyrian_1995',
+  'msdos_Earthworm_Jim_1995',
+  'msdos_The_Secret_of_Monkey_Island_1990',
+  'msdos_Grand_Theft_Auto_1997',
+  'msdos_The_Need_for_Speed_1995',
+  'msdos_Heretic_1994',
+  'msdos_Alone_in_the_Dark_1992',
+  'msdos_Double_Dragon_1988',
+  'msdos_Dune_II_1992',
+  'msdos_Diablo_1996',
+  'msdos_Star_Wars_Dark_Forces_1995',
+  'msdos_Fallout_1997',
+  'msdos_Theme_Park_1994',
+  'msdos_Sam_Max_Hit_the_Road_1993',
+  'msdos_Day_of_the_Tentacle_1993',
+  'msdos_Rayman_1995',
+  'msdos_Blood_1997',
+  'msdos_Prehistorik_2_1993',
+  'msdos_Golden_Axe_1990',
+  'msdos_Indiana_Jones_and_the_Last_Crusade_1989',
+  'msdos_Castlevania_1990',
+  'msdos_Contra_1988',
+  'msdos_Frogger_1983',
+  'msdos_Arkanoid_1988',
+  'msdos_Paperboy_1988',
+  'msdos_Qbert_1984',
+  'msdos_Dig_Dug_1982',
+  'msdos_Tomb_Raider_1996',
+  'msdos_Worms_1995',
+  'msdos_Transport_Tycoon_1994',
+  'msdos_Master_of_Orion_1993',
+  'msdos_Syndicate_1993',
+  'msdos_Command_Conquer_1995',
+  'msdos_Heroes_of_Might_and_Magic_1995',
+  'msdos_System_Shock_1994',
+  'msdos_X-COM_UFO_Defense_1994',
+  'msdos_Full_Throttle_1995',
+  'msdos_Terminal_Velocity_1995',
+  'msdos_Shadow_Warrior_1997',
+  'msdos_Magic_Carpet_1994',
+  'msdos_Descent_1995',
   'msdos_Raptor_Call_of_the_Shadows_1994',
-  'msdos_Alley_Cat_1984',
-  'msdos_Digger_1983',
-  'msdos_Tetris_1988',
-  'msdos_Pac_Man_1982',
-  'msdos_Space_Invaders_1978',
-  'msdos_Asteroids_1979',
-  'msdos_Centipede_1981'
+  'msdos_Abuse_1996',
+  'msdos_Ultima_VI_The_False_Prophet_1990',
+  'msdos_Zork_I_The_Great_Underground_Empire_1980',
+  'msdos_Karateka_1986',
+  'msdos_Incredible_Machine_The_1993',
+  'msdos_California_Games_1987',
+  'msdos_Oregon_Trail_Deluxe_The_1992',
+  'msdos_Sid_Meiers_Pirates_1987',
+  'msdos_Gabriel_Knight_Sins_of_the_Fathers_1993',
+  'msdos_Broken_Sword_The_Shadow_of_the_Templars_1996',
+  'msdos_Little_Big_Adventure_1994',
+  'msdos_Cannon_Fodder_1993',
+  'msdos_Destruction_Derby_1995',
+  'msdos_Screamer_1995',
+  'msdos_Pitfall_The_Mayan_Adventure_1995',
+  'msdos_Mega_Man_3_1992',
+  'msdos_Final_Fantasy_1991',
+  'msdos_Bust-A-Move_1996',
+  'msdos_Dungeon_Keeper_1997',
+  'msdos_Maniac_Mansion_1987',
+  'msdos_Elite_1987',
+  'msdos_Lode_Runner_1983',
+  'msdos_Pool_of_Radiance_1988',
+  'msdos_Elder_Scrolls_Arena_The_1994',
+  'msdos_Star_Wars_X-Wing_1993',
+  'msdos_Wing_Commander_1990',
+  'msdos_Castle_Wolfenstein_1984',
+  'msdos_Phantasmagoria_1995',
+  'msdos_Stonekeep_1995',
+  'msdos_Postal_1997',
+  'msdos_MDK_1997',
+  'msdos_Hexen_Beyond_Heretic_1995',
+  'msdos_Total_Annihilation_1997',
+  'msdos_Terra_Nova_Strike_Force_Centauri_1996',
+  'msdos_BioForge_1995',
+  'msdos_G-Police_1997'
 ];
 
 export default async function handler(req, res) {
@@ -43,36 +114,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  try {
-    // Archive.org Search API - fetch items from MS-DOS games collection
-    // Requesting 1000 games (there are 8835 total) sorted by downloads
-    // Using output=json (not jsonp) to get plain JSON response
-    const url = 'https://archive.org/advancedsearch.php?q=collection:softwarelibrary_msdos_games&fl=identifier&sort[]=downloads%20desc&rows=1000&output=json';
-    
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      throw new Error(`Archive.org API error: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    
-    // Response structure: { response: { numFound: 8835, docs: [{ identifier: "..." }, ...] } }
-    const games = data.response?.docs || [];
-    
-    if (games.length > 0) {
-      const gameIdentifiers = games.map(game => game.identifier).filter(id => id); // Filter out any null/undefined
-      console.log(`Fetched ${gameIdentifiers.length} MS-DOS games from Archive.org`);
-      return res.status(200).json({ games: gameIdentifiers, total: data.response?.numFound || gameIdentifiers.length });
-    }
-    
-    // Fallback to hardcoded list
-    console.log('No games found, using fallback list');
-    return res.status(200).json({ games: FALLBACK_GAMES, total: FALLBACK_GAMES.length });
-  } catch (error) {
-    console.error('Error fetching MS-DOS games:', error);
-    // Return fallback list on error
-    return res.status(200).json({ games: FALLBACK_GAMES, total: FALLBACK_GAMES.length });
-  }
+  // Return the static list of games (no API call needed)
+  return res.status(200).json({ games: MSDOS_GAMES, total: MSDOS_GAMES.length });
 }
 
