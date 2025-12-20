@@ -123,10 +123,41 @@ function shuffleSite() {
 }
 
 // ===== MS-DOS GAMES =====
-function openRandomMSDOSGame() {
-  // Popular MS-DOS games from Archive.org softwarelibrary_msdos_games collection
-  // Using game identifiers that work with the collection's structure
-  const msdosGames = [
+// Cache for games list to avoid fetching every time
+let msdosGamesCache = null;
+
+async function fetchMSDOSGames() {
+  if (msdosGamesCache) {
+    return msdosGamesCache;
+  }
+  
+  try {
+    // Fetch from our serverless function (which calls Archive.org API)
+    const response = await fetch('/api/msdos-games');
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch games');
+    }
+    
+    const data = await response.json();
+    const games = data.games || [];
+    
+    if (games.length > 0) {
+      msdosGamesCache = games;
+      return msdosGamesCache;
+    }
+    
+    // Fallback to hardcoded list if API fails
+    return getFallbackGames();
+  } catch (error) {
+    console.error('Error fetching MS-DOS games:', error);
+    return getFallbackGames();
+  }
+}
+
+function getFallbackGames() {
+  // Fallback list of popular MS-DOS games
+  return [
     'msdos_Doom_1993',
     'msdos_Wolfenstein_3D_1992',
     'msdos_Prince_of_Persia_1990',
@@ -158,9 +189,11 @@ function openRandomMSDOSGame() {
     'msdos_Asteroids_1979',
     'msdos_Centipede_1981'
   ];
-  
-  const randomGame = msdosGames[Math.floor(Math.random() * msdosGames.length)];
-  // Archive.org game detail page URL pattern
+}
+
+async function openRandomMSDOSGame() {
+  const games = await fetchMSDOSGames();
+  const randomGame = games[Math.floor(Math.random() * games.length)];
   const gameUrl = `https://archive.org/details/${randomGame}`;
   window.open(gameUrl, '_blank');
 }
